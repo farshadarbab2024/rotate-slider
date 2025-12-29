@@ -1,11 +1,10 @@
-import React from "react";
 import "./App.css";
 import hitlerImage from "./assets/images/profile/Adolf Hitler.jpg";
 import himmlerImage from "./assets/images/profile/Heinrich Himmler.jpg";
 import gobbelsImage from "./assets/images/profile/Paul Goebbels.jpg";
 import rommelImage from "./assets/images/profile/erwin_rommel.jpeg";
 import goringImage from "./assets/images/profile/Hermann Goring.jpg";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaAngleRight } from "react-icons/fa";
 import { motion } from "framer-motion";
 
@@ -58,9 +57,9 @@ const PentagonDots = () => {
 
   const [slideIndex, setSlideIndex] = useState<number>(0);
 
-  const radius = 100; // distance from center
-  const center = 102; // half of container (w-64 = 256px)
   const profiles = info?.map((profile, i) => {
+    const radius = 100; // distance from center
+    const center = 102; // half of container (w-64 = 256px)
     const angle = ((i + -slideIndex) * 72 - 90) * (Math.PI / 180); // rotate -90° to start from top
     const x = center + radius * Math.cos(angle) - 10; // 10 = half of dot size
     const y = center + radius * Math.sin(angle) - 10;
@@ -86,16 +85,10 @@ const PentagonDots = () => {
 
   const handleProfileClicked = (index: number) => {
     setSlideIndex(index);
-    console.log("index: ", index);
   };
 
-  useEffect(() => {
-    console.log("slideIndex: ", slideIndex);
-  }, [slideIndex]); //ntdelete
-
   const nextSlide = () => {
-
-    if (slideIndex >= (info?.length - 1)) {
+    if (slideIndex >= info?.length - 1) {
       setSlideIndex(0);
     } else {
       setSlideIndex((prev) => prev + 1);
@@ -182,7 +175,7 @@ const PentagonDots = () => {
 
       {/* Dots */}
       <div
-      className="flex items-center justify-center gap-x-2
+        className="flex items-center justify-center gap-x-2
       absolute bottom-[20px] right-1/2 translate-x-1/2"
       >
         {info?.map((_, index: number) => {
@@ -191,7 +184,7 @@ const PentagonDots = () => {
               key={`dot${index}`}
               className="rounded-full w-[8px] h-[8px] bg-gray-700 cursor-pointer"
               style={{
-                backgroundColor: slideIndex == index ? "var(--yellow)" : ""
+                backgroundColor: slideIndex == index ? "var(--yellow)" : "",
               }}
               onClick={() => setSlideIndex(index)}
             ></div>
