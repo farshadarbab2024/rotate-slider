@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+:root {
+  --primary_color: #E21B1B ; 
+  --yellow: #c0c310 ; 
+}
+
+@theme{
+  --color-primary-color: var(--primary_color) ; 
+  --color-yellow: var(--yellow) ; 
+}
